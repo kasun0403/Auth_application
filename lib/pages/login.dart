@@ -3,6 +3,7 @@ import 'package:auth_app/pages/sign_up.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -33,6 +34,19 @@ class _LoginPageState extends State<LoginPage> {
     setState(() {
       isloading = false;
     });
+  }
+
+  googleLogin() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
   @override
@@ -71,7 +85,13 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   ElevatedButton(
                       onPressed: () => Get.to(const ForgotPW()),
-                      child: const Text("Forgot password?"))
+                      child: const Text("Forgot password?")),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  ElevatedButton(
+                      onPressed: () => googleLogin(),
+                      child: const Text("Sign in with google"))
                 ],
               ),
             ),
