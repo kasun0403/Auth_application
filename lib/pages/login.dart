@@ -1,5 +1,8 @@
+import 'package:auth_app/pages/forget_pw.dart';
+import 'package:auth_app/pages/sign_up.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -36,7 +39,19 @@ class _LoginPageState extends State<LoginPage> {
               decoration: const InputDecoration(hintText: "Enter passsword"),
             ),
             ElevatedButton(
-                onPressed: () => signIn(), child: const Text("log in"))
+                onPressed: () => signIn(), child: const Text("log in")),
+            SizedBox(
+              height: 30,
+            ),
+            ElevatedButton(
+                onPressed: () => Get.to(SignUpPage()),
+                child: const Text("Register now")),
+            SizedBox(
+              height: 30,
+            ),
+            ElevatedButton(
+                onPressed: () => Get.to(ForgotPW()),
+                child: const Text("Forgot password?"))
           ],
         ),
       ),
