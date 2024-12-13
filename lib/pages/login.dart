@@ -1,4 +1,5 @@
 import 'package:auth_app/pages/forget_pw.dart';
+import 'package:auth_app/pages/mobile_home.dart';
 import 'package:auth_app/pages/sign_up.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -91,7 +92,10 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   ElevatedButton(
                       onPressed: () => googleLogin(),
-                      child: const Text("Sign in with google"))
+                      child: const Text("Sign in with google")),
+                  ElevatedButton(
+                      onPressed: () => Get.to(const MobileHome()),
+                      child: const Text("Login with mobile number"))
                 ],
               ),
             ),
