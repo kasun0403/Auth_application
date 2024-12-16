@@ -1,6 +1,6 @@
 import 'package:auth_app/pages/home_page.dart';
 import 'package:auth_app/pages/login.dart';
-import 'package:auth_app/pages/verify_email.dart';
+// import 'package:auth_app/pages/verify_email.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -19,11 +19,13 @@ class _WrapperState extends State<Wrapper> {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            if (snapshot.data!.emailVerified) {
-              return const HomePage();
-            } else {
-              return const VerifyEmail();
-            }
+            return const HomePage();
+//this is a code for the email verification
+            // if (snapshot.data!.emailVerified) {
+            //   return const HomePage();
+            // } else {
+            //   return const VerifyEmail();
+            // }
           } else {
             return const LoginPage();
           }
